@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+    background-color: #444;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    margin: 15px;
+    padding: 15px;
+    background-color: white;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Welcome to your FISS page</h1>
+    <p>Hello, {{ request.user.username }}!</p>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'income_revenue' %}">Income/Revenue</a></li>
+            <li><a href="{% url 'expenses' %}">Expenses</a></li>
+            <li><a href="{% url 'analysis' %}">Analysis</a></li>
+            <li><a href="{% url 'education_library' %}">Finance Education Library</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>
