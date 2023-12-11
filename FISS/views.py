@@ -23,7 +23,7 @@ def home_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login.html')
+    return redirect('login')
 
 def income_revenue_view(request):
     return render(request, 'income_revenue.html')
@@ -36,3 +36,7 @@ def analysis_view(request):
 
 def education_library_view(request):
     return render(request, 'education_library.html')
+
+def registration_view(request):
+    return render(request, 'registration.html')
+

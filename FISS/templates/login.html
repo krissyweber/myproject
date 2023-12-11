@@ -76,14 +76,17 @@ h1 {
     <h3>Please Login Below</h3>
     </header>
 
-    <form method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
-        {% if error %}
-            <p>{{ error }}</p>
-        {% endif %}
-    </form>
+    <div class="login-container">
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <button type="submit">Login</button>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <a href="/registration" class="button">Register Here</a>
+        </form>
+    </div>
 </body>
 </html>

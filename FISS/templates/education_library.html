@@ -2,9 +2,164 @@
 <html>
 <head>
     <title>Education Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        #productComparison, #budgetTool {
+            margin: 20px auto;
+            width: 40%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            justify-content: left;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: calc(70% - 20px);
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #comparisonResults, #budgetResults {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            width: calc(70% - 20px);
+        }
+
+            .return-home-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 10%;
+            
+        }
+
+        .return-home-button:hover {
+            background-color: #0056b3;
+        }    
+            
+    
+    </style>
 </head>
 <body>
     <h1>Finance Education Library</h1>
-   
+
+    <a href="/home/" class="return-home-button">Return to Home Page</a>
+
+    <h2>Product Comparison Tool</h2>
+    <div id="productComparison">
+        <form id="productForm">
+            <input type="text" id="productName" placeholder="Product Name">
+            <input type="number" id="productPrice" placeholder="Price">
+            <input type="text" id="productFeature" placeholder="Feature">
+            <button type="button" onclick="addProduct()">Add Product</button>
+        </form>
+        <div id="comparisonResults">
+            
+        </div>
+    </div>
+    
+
+    
+    <script>
+        let products = [];
+    
+        function addProduct() {
+            const productName = document.getElementById('productName').value;
+            const productPrice = document.getElementById('productPrice').value;
+            const productFeature = document.getElementById('productFeature').value;
+    
+            // Adding the product to the list
+            products.push({ name: productName, price: productPrice, feature: productFeature });
+    
+            // Reset form fields
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+            document.getElementById('productFeature').value = '';
+    
+            displayProducts();
+        }
+    
+        function displayProducts() {
+            const resultsDiv = document.getElementById('comparisonResults');
+            resultsDiv.innerHTML = ''; // Clear existing content
+    
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.innerHTML = `<strong>Name:</strong> ${product.name} <br>
+                                        <strong>Price:</strong> $${product.price} <br>
+                                        <strong>Feature:</strong> ${product.feature}`;
+                resultsDiv.appendChild(productDiv);
+            });
+        }
+    </script>
+    <h2>Budget Tool</h2>
+    <div id="budgetTool">
+        <form id="budgetForm">
+            <input type="number" id="income" placeholder="Monthly Income">
+            <input type="number" id="expenses" placeholder="Monthly Expenses">
+            <button type="button" onclick="calculateBudget()">Calculate</button>
+        </form>
+        <div id="budgetResults">
+            
+        </div>
+       
+    </div>
+    
+    <script>
+        function calculateBudget() {
+            const income = parseFloat(document.getElementById('income').value);
+            const expenses = parseFloat(document.getElementById('expenses').value);
+    
+            const budget = income - expenses;
+            const resultsDiv = document.getElementById('budgetResults');
+    
+            if (!isNaN(budget)) {
+                resultsDiv.innerHTML = `<strong>Available Budget:</strong> $${budget.toFixed(2)}`;
+            } else {
+                resultsDiv.innerHTML = `<strong>Error:</strong> Please enter valid numbers for income and expenses.`;
+            }
+        }
+    </script>
 </body>
 </html>
