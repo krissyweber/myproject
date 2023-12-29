@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from .models import FinanceResource
+
 
 def login_view(request):
     if request.method == "POST":
@@ -39,4 +41,8 @@ def education_library_view(request):
 
 def registration_view(request):
     return render(request, 'registration.html')
+
+def finance_resources_view(request):
+    resources = FinanceResource.objects.all()
+    return render(request, 'finance_resource.html', {'resources': resources})
 
